@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon",
-    "test": "jest --coverage --verbose ",
+    "test": "jest --coverage --verbose --forceExit",
     "lint": "eslint '**/*.js'"
   },
   "repository": {
