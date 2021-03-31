@@ -117,4 +117,9 @@ describe('Server', () => {
     // console.log(response.body);
     // expect(response.body).toEqual(null);
   });
+
+  afterAll( async () =>{
+    await mongoose.connection.close()
+})
 });
+
