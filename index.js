@@ -2,5 +2,10 @@
 
 require('dotenv').config();
 const server = require('./src/server');
-//server is the name of the app exported from the server.js file
-server.start(process.env.PORT);
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    server.start(process.env.PORT);
+  }).catch((e) => {
+    console.log('__CONNECTION ERROR__', e.message);
+  });

@@ -1,13 +1,13 @@
 'use strict';
 const express = require('express');
 const validator = require('../middleware/validator');
-const Clothes = require('../models/clothes');
-const clothes = new Clothes();
+const Clothes = require('../models/data-collection-class')
+const clothesModel = require('../models/clothes');
+const clothes = new Clothes(clothesModel);
 const router = express.Router();
 
 
 // Add a Record
-// You should verify that only the fields you define get saved as a record
 router.post('/', addClothes);
 // Get All Records
 router.get('/', getAllClothes);
@@ -15,32 +15,51 @@ router.get('/', getAllClothes);
 router.get('/:id', validator, getClothesById);
 // Update A Record
 router.put('/:id', validator, updateClothes);
-//  You should verify that only the fields you define get saved as a record
 // Delete A Record
 router.delete('/:id', validator, deleteClothes);
-// Returns: The record from the database as it exists after you delete it (i.e. null
 
-function addClothes(req, res) {
+async function addClothes(req, res,next) {
   const clothesObject = req.body;
-  const resObj = clothes.create(clothesObject);
-  res.status(201).json(resObj);
+  try {
+    const resObj = await clothes.create(clothesObject);
+    res.status(201).json(resObj);
+  }catch (error) {
+    next(error);
+  } 
 }
-function getAllClothes(req, res) {
-  const resObj = clothes.read();
-  res.json(resObj);
+async function getAllClothes(req, res, next) {
+  try {
+    const resObj = await clothes.read();
+  res.json(resObj);  
+  }catch (error) {
+    next(error);
+  }
 }
-function getClothesById(req, res) {
-  const resObj = clothes.read(req.params.id);
+async function getClothesById(req, res, next) {
+  try{
+    const resObj =await  clothes.read(req.params.id);
   res.json(resObj);
+  }catch (error) {
+    next(error);
+  }
 }
-function updateClothes(req, res) {
-  const clothesObject = req.body;
-  const resObj = clothes.update(req.params.id, clothesObject);
+async function updateClothes(req, res, next) {
+   const clothesObject = req.body;
+  try {
+    const resObj = await clothes.update(req.params.id, clothesObject);
   res.json(resObj);
+  }catch (error) {
+    next(error);
+  }
 }
-function deleteClothes(req, res) {
-  const resObj = clothes.delete(req.params.id);
+async function deleteClothes(req, res, next) {
+  try{
+    const resObj = await clothes.delete(req.params.id);
   res.json(resObj);
+  }
+  catch (error) {
+    next(error);
+  }
 }
 
 module.exports = router;

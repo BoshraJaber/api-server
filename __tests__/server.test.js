@@ -1,9 +1,18 @@
 'use strict';
 
-const superTest = require('supertest');
+require('dotenv').config()
+// const superTest = require('supertest');
 // const { report } = require('../src/ routes/clothes');
 const server = require('../src/server');
-const request = superTest(server.server);
+// const request = superTest(server.server);
+const superGoose = require('@code-fellows/supergoose');
+const request = superGoose(server.server);
+
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 let id;
 let idClothes;
 

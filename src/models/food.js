@@ -1,40 +1,11 @@
 'use strict';
+const mongoose = require('mongoose');
 
-'use strict';
-const uuid = require('uuid').v4;
+const foodSchema = new mongoose.Schema({
+  type: { type: String, required: true },
+  price: { type: String },
+});
+// this line will create the collection (sql table) with name 'person'
+const foodModel = mongoose.model('food', foodSchema);
 
-class Food {
-  constructor() {
-    this.db = [];
-    // [{id,data:{calories,price}},....]
-  }
-  create(obj) {
-    const record = {
-      id: uuid(),
-      data: obj,
-    };
-    this.db.push(record);
-    return record;
-  }
-  read(id) {
-    if (id) {
-      return this.db.find((record) => record.id === id);
-    } else {
-      return this.db;
-    }
-  }
-  update(id, obj) {
-    for (let i = 0; i < this.db.length; i++) {
-      if (this.db[i].id === id) {
-        this.db[i].data = obj;
-        return this.db[i];
-      }
-    }
-  }
-  delete(id) {
-    this.db = this.db.filter((person) => person.id !== id);
-    return this.db;
-  }
-}
-
-module.exports = Food;
+module.exports = foodModel;
