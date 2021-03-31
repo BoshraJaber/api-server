@@ -3,9 +3,9 @@
 ## Deployment Test
 ### Author: Boshra Jaber
 * [tests report](https://github.com/BoshraJaber/api-server/actions)
-* [Heroku application for main branch- Food ](https://boshra-basic-api-server.herokuapp.com/api/v1/food)
-* [Heroku application for main branch- Clothes ](https://boshra-basic-api-server.herokuapp.com/api/v1/clothes)
-* [Pull Request to main](https://github.com/BoshraJaber/basic-api-server/pull/2)
+* [Heroku application for main branch- Food ](https://boshramongodb.herokuapp.com/api/v1/food)
+* [Heroku application for main branch- Clothes ](https://boshramongodb.herokuapp.com/api/v1/clothes)
+* [Pull Request to main](https://github.com/BoshraJaber/api-server/pull/3)
 
 ## Setup
 - `.env` requirements:
