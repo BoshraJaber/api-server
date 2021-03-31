@@ -38,7 +38,7 @@ async function getAllFood(req, res, next) {
 async function getFoodById(req, res, next) {
   try{
     const resObj = await food.read(req.params.id);
-  res.json(resObj);
+  res.json(resObj[0]);
   } catch (error) {
     next(error);
   }

@@ -30,15 +30,15 @@ async function addClothes(req, res,next) {
 async function getAllClothes(req, res, next) {
   try {
     const resObj = await clothes.read();
-  res.json(resObj);  
-  }catch (error) {
+    res.json(resObj);  
+  } catch (error) {
     next(error);
   }
 }
 async function getClothesById(req, res, next) {
   try{
     const resObj =await  clothes.read(req.params.id);
-  res.json(resObj);
+  res.json(resObj[0]);
   }catch (error) {
     next(error);
   }
